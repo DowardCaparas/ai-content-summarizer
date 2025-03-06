@@ -6,15 +6,14 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "", // Provide a fallback to avoid undefined errors
 });
 
-
-export async function GET(req: Request) {
+export async function POST(req: Request) {
   try {
     
     const { article } = await req.json();
     if (!article) return NextResponse.json({ error: "No article provided" }, { status: 400 });
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-4o",
       store: true,
       messages: [{ role: "system", content: `Summarize this article in key points:\n\n${article}` }],
       
