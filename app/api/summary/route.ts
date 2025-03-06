@@ -7,7 +7,7 @@ const openai = new OpenAI({
 });
 
 
-export async function POST(req: Request) {
+export async function GET(req: Request) {
   try {
     
     const { article } = await req.json();
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
       model: "gpt-4o-mini",
       store: true,
       messages: [{ role: "system", content: `Summarize this article in key points:\n\n${article}` }],
-  
+      
     });
 
     return NextResponse.json({ summary: response.choices[0]?.message?.content || "No summary generated." });
