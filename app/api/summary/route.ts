@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     if (!article) return NextResponse.json({ error: "No article provided" }, { status: 400 });
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-mini",
       store: true,
       messages: [{ role: "system", content: `Summarize this article in key points:\n\n${article}` }],
       
