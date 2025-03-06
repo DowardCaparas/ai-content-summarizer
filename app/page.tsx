@@ -68,7 +68,7 @@ const Home = () => {
       setArticle("");
       setArticleID(newArticleID);
     } catch (error) {
-      setSelectedSummary("Error occurred while summarizing.");
+      setSelectedSummary(`Error occurred while summarizing. ${error}`);
     } finally {
       setLoading(false);
     }
@@ -134,7 +134,7 @@ const Home = () => {
           </div>
         ) : (
           <div className="h-full">
-            <span className="text-3xl font-semibold">AI Blog Summary</span>
+            <span className="text-3xl font-semibold">AI Content Summarizer</span>
             <div className="input_area">
               <textarea
                 className="p-2"
