@@ -18,8 +18,11 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ summary: response.choices[0]?.message?.content || "No summary generated." });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error:", error);
-    return NextResponse.json({ error: error.message || "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "Internal server error" },
+      { status: 500 }
+    );
   }
 }
