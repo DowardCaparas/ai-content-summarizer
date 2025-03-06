@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
 async function getCompletion() {
@@ -9,7 +10,7 @@ async function getCompletion() {
         ]
     });
 
-    console.log(completion.choices[0].message.content); // Output response
+    return NextResponse.json({ summary: completion.choices[0]?.message?.content || "No summary generated." });
 }
 
 getCompletion(); // Call the function
