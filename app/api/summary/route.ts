@@ -20,6 +20,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ summary: response.choices[0]?.message?.content || "No summary generated." });
   } catch (error) {
+    console.error("Error summarizing article:", error); // Log the error for debugging
     return NextResponse.json({ error: "Failed to summarize." }, { status: 500 });
   }
+  
 }
