@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
+import "dotenv/config";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // Use correct environment variable
+  apiKey: process.env.OPENAI_API_KEY || "", // Provide a fallback to avoid undefined errors
 });
+
 
 export async function POST(req: Request) {
   try {
